@@ -141,3 +141,5 @@ dist
 # Temporary files
 tmp/
 temp/
+
+.claude
