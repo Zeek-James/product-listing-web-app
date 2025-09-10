@@ -14,7 +14,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://product-listing-web-app-chi.vercel.app', process.env.FRONTEND_URL]
+    ? [
+        'https://product-listing-web-app-chi.vercel.app',
+        ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : [])
+      ].filter(Boolean)
     : ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001'],
   credentials: true
 }));
