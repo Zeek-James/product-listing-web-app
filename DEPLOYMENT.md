@@ -13,15 +13,18 @@ This document provides step-by-step instructions for deploying the Product Listi
 
 ### Backend (.env)
 ```
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/product-listing
+PORT=5001
+# For production, use your MongoDB Atlas connection string
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/product-listing?retryWrites=true&w=majority
+# For local development
+# MONGODB_URI=mongodb://localhost:27017/product-listing
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 NODE_ENV=production
 ```
 
 ### Frontend (.env.local)
 ```
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_API_URL=http://localhost:5001/api
 ```
 
 ## Local Development

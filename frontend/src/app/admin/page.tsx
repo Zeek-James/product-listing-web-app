@@ -30,8 +30,8 @@ const AdminPage: React.FC = () => {
       setLoading(true);
       const response = await productAPI.getAll({ limit: 100 });
       setProducts(response.data.products);
-    } catch (error: any) {
-      setError(error.response?.data?.error || 'Failed to fetch products');
+    } catch (error: unknown) {
+      setError((error as any).response?.data?.error || 'Failed to fetch products');
     } finally {
       setLoading(false);
     }
@@ -51,8 +51,8 @@ const AdminPage: React.FC = () => {
         imageUrl: '',
         stock: 0
       });
-    } catch (error: any) {
-      setError(error.response?.data?.error || 'Failed to create product');
+    } catch (error: unknown) {
+      setError((error as any).response?.data?.error || 'Failed to create product');
     }
   };
 
@@ -61,8 +61,8 @@ const AdminPage: React.FC = () => {
       try {
         await productAPI.delete(productId);
         setProducts(products.filter(p => p._id !== productId));
-      } catch (error: any) {
-        setError(error.response?.data?.error || 'Failed to delete product');
+      } catch (error: unknown) {
+        setError((error as any).response?.data?.error || 'Failed to delete product');
       }
     }
   };
@@ -73,7 +73,7 @@ const AdminPage: React.FC = () => {
       return;
     }
     fetchProducts();
-  }, [user]);
+  }, [user, router]);
 
   if (!user) {
     return null;
